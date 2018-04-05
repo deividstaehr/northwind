@@ -1,0 +1,98 @@
+/* #3593e6 */
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main {
+    padding: 15px;
+}
+
+li {
+    list-style: none;
+}
+
+.table {
+    text-align: center !important;
+}
+
+.title {
+    font-weight: bold;
+    line-height: 2em;
+    font-size: 26px;
+    color: #007bff !important;
+    text-transform: uppercase;
+}
+
+#dFilter {
+    margin-right: 15px;
+}
+
+input:focus {
+    outline: 0;
+}
+
+.btn-delete, .btn-update {
+    margin: 5px;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #343a40 !important;
+}
+
+thead {
+    line-height: 2.5em !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.fa-2x {
+    font-size: 1.5em;
+    color: #343a40cf;
+}
+
+.fa-2x:hover {
+    color: #22272c;
+}
+
+p.text-right {
+    width: 100%;
+    margin: 0;
+    line-height: 3em;
+    text-align: right;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.nav-link strong {
+    text-transform: uppercase;
+    padding: 0 15px;
+}
+
+.reset-width {
+    width: auto !important;
+}
+
+.col-form-label {
+    text-align: right;
+    font-size: 17px;
+}
+
+.btn-submit {
+    text-align: right !important;
+}
+
+
+.input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+    flex: none;
+}
