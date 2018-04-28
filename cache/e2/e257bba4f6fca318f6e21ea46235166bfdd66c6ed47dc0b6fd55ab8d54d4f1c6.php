@@ -11,18 +11,38 @@ class __TwigTemplate_f6f75a9cd71b756dc05b737a985001ae7ef77be1f06983eaeacb0549eea
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
+        // line 1
+        $this->parent = $this->loadTemplate("base.html", "home.html", 1);
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'content' => array($this, 'block_content'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "base.html";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<h2>";
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        echo "Teste";
+    }
+
+    // line 5
+    public function block_content($context, array $blocks = array())
+    {
+        // line 6
+        echo "    ";
         echo twig_escape_filter($this->env, ($context["message"] ?? null), "html", null, true);
-        echo "</h2>";
+        echo "
+";
     }
 
     public function getTemplateName()
@@ -37,7 +57,7 @@ class __TwigTemplate_f6f75a9cd71b756dc05b737a985001ae7ef77be1f06983eaeacb0549eea
 
     public function getDebugInfo()
     {
-        return array (  23 => 1,);
+        return array (  42 => 6,  39 => 5,  33 => 3,  15 => 1,);
     }
 
     public function getSourceContext()

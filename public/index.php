@@ -3,7 +3,9 @@
 require_once __DIR__.'/../config/app.php';
 
 $slim->get('/', function () use ($twig) {
-    dump($twig->render('home.html', ['message' => 'teste']));
+    $home = new app\controllers\HomeController;
+    $home->index();
 });
+
 
 $slim->run();

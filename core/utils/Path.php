@@ -4,17 +4,23 @@ namespace core\utils;
 
 class Path
 {
-    private static $paths;
+	private static $paths = [];
 
-    private function __construct() {}
+	private function __construct() { }
 
-    public static function load($field)
-    {
-        return (isset(self::$paths[$field])) ? self::$paths[$field] : null;
+	public static function registry($path)
+	{
+        if (is_array($path)) {
+            self::$paths = array_merge(self::$paths, $path);
+        }
     }
-
-    public static function registry($arr)
+    
+	public static function find($prop = null)
     {
-        self::$paths = (is_array($arr)) ? array_merge(self::$paths, $arr) : self::$paths;
+        $prop = strtoupper($prop);
+        if ($prop != null) {
+            return array_key_exists($prop, self::$paths) ? self::$paths[$prop] : null;
+        } 
+        return self::$paths;
     }
 }

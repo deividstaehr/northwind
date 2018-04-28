@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        {% block styles %}
+            <link rel="stylesheet" href="{{ csspath }}bootstrap.min.css" />
+            <link rel="stylesheet" href="{{ csspath }}main.css" />
+        {% endblock %}
+    </head>
+    <body>
+        <!-- HEADER -->
+        <header id="header">
+            {% block header %}
+            
+            {% endblock %}
+        </header>
+        <!-- /HEADER -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            {% block content %}
+            
+            {% endblock %}
+        </section>
+        <!-- /CONTENT -->
+
+        <!-- FOOTER -->
+        <footer id="footer">
+            {% block footer %}
+            
+            {% endblock %}
+        </footer>
+        <!-- /FOOTER -->
+
+        {% block style %}
+            <script src="{{ jspath }}jquery.js"></script>
+            <script src="{{ jspath }}bootstrap.min.js"></script>
+            <script src="{{ jspath }}main.js"></script>
+        {% endblock %}
+    </body>
+</html>
