@@ -1,15 +1,17 @@
 {
-    "authors": [
-        {
-            "name": "Deivid Jeferson Staehr de Oliveira",
-            "email": "deividstaehr@hotmail.com",
-            "homepage": "https://github.com/deividstaehr"
-        }
-    ],
     "autoload": {
         "psr-4": {
-            "app\\": "app",
-            "core\\": "core"
+            "app\\models\\": "app/models",
+            "app\\controllers\\": "app/controllers",
+            "app\\views\\": "app/views",
+            "core\\database\\": "core/database",
+            "core\\application\\": "core/application",
+            "core\\utils\\": "core/utils"
         }
+    },
+    "require": {
+        "twig/twig": "^2.0",
+        "slim/slim": "~2.0",
+        "symfony/var-dumper": "^4.0"
     }
 }

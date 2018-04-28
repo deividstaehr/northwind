@@ -4,35 +4,105 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit367f7b8de97b49f52ba3a9790f498e0d
+class ComposerStaticInitac6a6a671b52aff3f327e8256d28d3a8
 {
+    public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'c' => 
         array (
-            'core\\' => 5,
+            'core\\utils\\' => 11,
+            'core\\database\\' => 14,
+            'core\\application\\' => 17,
         ),
         'a' => 
         array (
-            'app\\' => 4,
+            'app\\views\\' => 10,
+            'app\\models\\' => 11,
+            'app\\controllers\\' => 16,
+        ),
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php72\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'core\\' => 
+        'core\\utils\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/core',
+            0 => __DIR__ . '/../..' . '/core/utils',
         ),
-        'app\\' => 
+        'core\\database\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app',
+            0 => __DIR__ . '/../..' . '/core/database',
+        ),
+        'core\\application\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/core/application',
+        ),
+        'app\\views\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/views',
+        ),
+        'app\\models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/models',
+        ),
+        'app\\controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/controllers',
+        ),
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'S' => 
+        array (
+            'Slim' => 
+            array (
+                0 => __DIR__ . '/..' . '/slim/slim',
+            ),
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit367f7b8de97b49f52ba3a9790f498e0d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit367f7b8de97b49f52ba3a9790f498e0d::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitac6a6a671b52aff3f327e8256d28d3a8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitac6a6a671b52aff3f327e8256d28d3a8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitac6a6a671b52aff3f327e8256d28d3a8::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -6,6 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'core\\' => array($baseDir . '/core'),
-    'app\\' => array($baseDir . '/app'),
+    'core\\utils\\' => array($baseDir . '/core/utils'),
+    'core\\database\\' => array($baseDir . '/core/database'),
+    'core\\application\\' => array($baseDir . '/core/application'),
+    'app\\views\\' => array($baseDir . '/app/views'),
+    'app\\models\\' => array($baseDir . '/app/models'),
+    'app\\controllers\\' => array($baseDir . '/app/controllers'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
 );
