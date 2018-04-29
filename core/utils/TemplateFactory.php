@@ -12,7 +12,7 @@ class TemplateFactory
     {
         $loader = new \Twig_Loader_Filesystem(Path::find('root').'public/pages');
         //$twig = new \Twig_Environment($loader, ['cache' => Path::find('root').'cache']);
-        $twig = new \Twig_Environment($loader, []); // sem cache para testes
+        $twig = new \Twig_Environment($loader, array()); // sem cache
 
         return $twig->load($tpl);
     }

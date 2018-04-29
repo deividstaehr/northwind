@@ -3,24 +3,28 @@
     <head>
         <title>{% block title %}{% endblock %}</title>
         {% block styles %}
-            <link rel="stylesheet" href="{{ csspath }}bootstrap.min.css" />
-            <link rel="stylesheet" href="{{ csspath }}main.css" />
+            <link rel="stylesheet" href="{{ cssPath }}bootstrap.min.css" />
+            <link rel="stylesheet" href="{{ cssPath }}main.css" />
         {% endblock %}
     </head>
     <body>
         <!-- HEADER -->
         <header id="header">
             {% block header %}
-            
+            <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="{{ rootLink }}">Home</a>
+            </nav>
             {% endblock %}
         </header>
         <!-- /HEADER -->
 
         <!-- CONTENT -->
         <section id="content">
+            <div class="container-fluid">
             {% block content %}
             
             {% endblock %}
+            </div>
         </section>
         <!-- /CONTENT -->
 
@@ -33,9 +37,9 @@
         <!-- /FOOTER -->
 
         {% block style %}
-            <script src="{{ jspath }}jquery.js"></script>
-            <script src="{{ jspath }}bootstrap.min.js"></script>
-            <script src="{{ jspath }}main.js"></script>
+            <script src="{{ jsPath }}jquery.js"></script>
+            <script src="{{ jsPath }}bootstrap.min.js"></script>
+            <script src="{{ jsPath }}main.js"></script>
         {% endblock %}
     </body>
 </html>

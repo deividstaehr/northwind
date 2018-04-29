@@ -10,16 +10,17 @@ class View
     private $template;
     private $dataReplace;
 
-    public function __construct($assets = null)
+    public function __construct($config = null)
     {
         $this->template = TemplateFactory::make($this->getTemplateFileName());
         $this->html = '';
         $this->dataReplace = array();
 
-        if (is_null($assets)) {
+        if (is_null($config)) {
             $this->add([
-                'csspath' => Path::find('style_dir'),
-                'jspath'=> Path::find('script_dir')
+                'cssPath' => Path::find('style_dir'),
+                'jsPath'  => Path::find('script_dir'),
+                'rootLink'    => Path::find('root_link')
             ]);
         }
     }
