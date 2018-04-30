@@ -8,15 +8,15 @@ class PDOFactory
 {
     private function __construct() {}
 
-    public static function make()
+    public static function make($mode)
     {
         $db = self::parseDatabaseIniFile($dbinfo = 'database');
    
         $user  = isset($db['user']) ? $db['user'] : NULL;
-        $pass  = isset($db['pass']) ? $db['pass'] : NULL;
-        $name  = isset($db['name']) ? $db['name'] : NULL;
+        $pass  = isset($db['password']) ? $db['password'] : NULL;
+        $name  = isset($db['database']) ? $db['database'] : NULL;
         $host  = isset($db['host']) ? $db['host'] : NULL;
-        $type  = isset($db['type']) ? $db['type'] : NULL;
+        $type  = isset($db['driver']) ? $db['driver'] : NULL;
         $port  = isset($db['port']) ? $db['port'] : NULL;
         
         switch ($type)
@@ -35,19 +35,22 @@ class PDOFactory
         }
         
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+
+        if ($mode == 'obj') {
+            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+        }
         
         return $pdo;
     }
 
-    private function parseDatabaseIniFile()
+    private function parseDatabaseIniFile($database)
     {
-        $iniFile = Path::find('root')."core/config/{$database}.ini";
+        $iniFile = Path::find('root')."config/{$database}.ini";
         
         if (file_exists($iniFile)) {
             return parse_ini_file($iniFile);
         } else {
-            throw new \Exception("Arquivo não encrontrado ('{$database}.ini')");
+            throw new \Exception("Arquivo não encrontrado ('{$iniFile}.ini')");
         }
     }
 }

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ parent() }}
+<style>
+    #content { 
+        text-align: center;
+   
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listagem de Funcionários</li>
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
+
+{% block script %}
+{{ parent() }}
+    <script>
+        $(window).load(function() {
+            alert(1);
+        });
+    </script>
+{% endblock %}

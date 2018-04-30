@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ parent() }}
+<style>
+    #content { 
+        text-align: center;
+   
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ rootLink }}employee">Funcionários</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar</li>
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Cargo</th>
+                <th>Nascimento</th>
+                <th>Admissão</th>
+                <th>País</th>
+                <th>Cidade</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.IDFuncionario }}</td>
+                    <td>{{ employee.Nome }}</td>
+                    <td>{{ employee.Sobrenome }}</td>
+                    <td>{{ employee.Titulo }}</td>
+                    <td>{{ employee.DataNac }}</td>
+                    <td>{{ employee.DataAdmissao }}</td>
+                    <td>{{ employee.Pais }}</td>
+                    <td>{{ employee.Cidade }}</td>
+                    <td>{{ employee.TelefoneResidencial }}</td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block script %}
+{{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $(".navbar-nav li.active").removeClass('active');
+            $("#employee-item").addClass("active");
+        });
+    </script>
+{% endblock %}

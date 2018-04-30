@@ -48,9 +48,13 @@ abstract class Model
 
     }
 
-    public function all()
+    public function all($mode = 'obj', $columns = '*')
     {
 
+
+        return $this->db
+            ->select((is_array($columns) ? implode(', ', $columns) : $columns))
+            ->execute($mode, 'all');
     }
 
     public function getData()

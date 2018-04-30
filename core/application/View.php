@@ -18,9 +18,9 @@ class View
 
         if (is_null($config)) {
             $this->add([
-                'cssPath' => Path::find('style_dir'),
-                'jsPath'  => Path::find('script_dir'),
-                'rootLink'    => Path::find('root_link')
+                'cssPath'  => Path::find('style_dir'),
+                'jsPath'   => Path::find('script_dir'),
+                'rootLink' => Path::find('root_link')
             ]);
         }
     }
@@ -30,7 +30,7 @@ class View
         echo $this->template->render($this->dataReplace);
     }
 
-    private function add($arr)
+    protected function add($arr)
     {
         if (is_array($arr)) {
             $data = array_merge($this->dataReplace, $arr);

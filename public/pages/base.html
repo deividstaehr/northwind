@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}NorthWind{% endblock %}</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
         {% block styles %}
             <link rel="stylesheet" href="{{ cssPath }}bootstrap.min.css" />
             <link rel="stylesheet" href="{{ cssPath }}main.css" />
@@ -11,10 +12,33 @@
         <!-- HEADER -->
         <header id="header">
             {% block header %}
-            <nav class="navbar navbar-dark bg-dark">
+            <!-- <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand" href="{{ rootLink }}">Home</a>
-            </nav>
+            </nav> -->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="{{ rootLink }}"><strong>NorthWind</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item active">
+                      <a class="nav-link" id="home-item" href="{{ rootLink }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="employee-item" href="{{ rootLink }}employee">Funcionarios</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
             {% endblock %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    {% block breadcrumb %}
+                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                    {% endblock %}
+                </ol>
+            </nav>
         </header>
         <!-- /HEADER -->
 
@@ -31,12 +55,14 @@
         <!-- FOOTER -->
         <footer id="footer">
             {% block footer %}
-            
+            <div class="container-fluid">
+                NorthWind - 2018
+            </div>
             {% endblock %}
         </footer>
         <!-- /FOOTER -->
 
-        {% block style %}
+        {% block script %}
             <script src="{{ jsPath }}jquery.js"></script>
             <script src="{{ jsPath }}bootstrap.min.js"></script>
             <script src="{{ jsPath }}main.js"></script>

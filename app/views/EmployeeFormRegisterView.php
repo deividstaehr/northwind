@@ -6,9 +6,9 @@ use core\application\View;
 
 use core\utils\Path;
 
-class HomeView extends View
+class EmployeeFormRegisterView extends View
 {
-    protected $template_name = 'home';
+    protected $template_name = 'employee_form_register';
 
     public function __construct()
     {
