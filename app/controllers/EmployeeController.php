@@ -16,7 +16,7 @@ class EmployeeController extends Controller
 
     public function list()
     {
-        $employees = $this->model->all('arr', [
+        $employees = $this->model->all('obj', [
             'IDFuncionario',
             'Nome',
             'Sobrenome',

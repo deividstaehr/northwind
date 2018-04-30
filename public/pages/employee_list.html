@@ -3,14 +3,8 @@
 {% block styles %}
 {{ parent() }}
 <style>
-    #content { 
-        text-align: center;
-   
-    }
-
-    #footer {
-        position: absolute;
-        bottom: 0;
+    #emplyee-option {
+        margin: 20px 0;
     }
 </style>
 {% endblock %}
@@ -23,10 +17,17 @@
 
 {% block content %}
 
+    <div id="emplyee-option" class="container-fluid">
+        <h4 class="title">Funcionários</h4>
+        <hr>
+        <button class="btn btn-primary btn-delete">Excluir selecionados</button>
+        <button class="btn btn-default btn-insert">Cadastrar funcionário</button>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
+                <th></th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Cargo</th>
@@ -35,12 +36,18 @@
                 <th>País</th>
                 <th>Cidade</th>
                 <th>Telefone</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for employee in employees %}
                 <tr>
-                    <td>{{ employee.IDFuncionario }}</td>
+                    <td>
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                        <input type="checkbox" class="custom-control-input" id="emplyee{{ employee.IDFuncionario }}">
+                        <label class="custom-control-label" for="emplyee{{ employee.IDFuncionario }}"></label>
+                        </div>
+                    </td>
                     <td>{{ employee.Nome }}</td>
                     <td>{{ employee.Sobrenome }}</td>
                     <td>{{ employee.Titulo }}</td>
@@ -49,6 +56,11 @@
                     <td>{{ employee.Pais }}</td>
                     <td>{{ employee.Cidade }}</td>
                     <td>{{ employee.TelefoneResidencial }}</td>
+                    <td class="min">
+                        <a href="{{ rootLink }}employee/update/{{ employee.IDFuncionario }}">
+                            Alterar
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}            
         </tbody>
@@ -58,10 +70,5 @@
 
 {% block script %}
 {{ parent() }}
-    <script>
-        $(document).ready(function(){
-            $(".navbar-nav li.active").removeClass('active');
-            $("#employee-item").addClass("active");
-        });
-    </script>
+    <script src="{{ jsPath }}employee.js"></script>
 {% endblock %}

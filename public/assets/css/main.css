@@ -6,6 +6,7 @@ body {
 
 button {
     cursor: pointer;
+    border-radius: 2px !important;
 }
 
 .box {
@@ -27,4 +28,10 @@ button {
 
 #footer div {
     text-align: center;
+}
+
+.title {
+    color: #555 !important;
+    font-size: 1.5rem;
+    text-transform: uppercase;
 }
