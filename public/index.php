@@ -14,9 +14,6 @@ $slim->group('/employee', function() use ($slim) {
     $slim->get('/', function() {
         $controller = new app\controllers\EmployeeController;
         $controller->list();
-        // $class = new app\models\Employee;
-        // dump($class);
-        // dump($class->all());
     });
 
     // Cadastro
