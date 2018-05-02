@@ -16,9 +16,9 @@ class DB
         self::$conn = null;
     }
 
-    public function begin($mode)
+    public function begin()
     {
-		self::$conn = PDOFactory::make($mode);
+	self::$conn = PDOFactory::make();
         self::$conn->beginTransaction();
         
         return $this;
@@ -26,20 +26,20 @@ class DB
 
     public function commit()
     {
-		self::$conn->commit();
-		self::$conn = null;
+        self::$conn->commit();
+        self::$conn = null;
     }
 
     public function rollback()
     {
-        self::$conn->rollback();
+        //self::$conn->rollback();
         self::$conn = null;
     }
 
-    public function execute($mode, $return = null)
+    public function execute($return = null)
     {
         try {
-            $this->begin($mode);
+            $this->begin();
 
             $stm = $this->getCurrentConnection()->prepare($this->getQuery());
             $exec = $stm->execute();
@@ -52,7 +52,7 @@ class DB
 
         if (strtolower($return) == 'all') {
             return $stm->fetchAll();
-        } else if (strtolower($return) == 'first') {
+        } else {
             return $stm->fetch();
         }
         

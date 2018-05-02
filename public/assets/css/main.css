@@ -35,3 +35,16 @@ button {
     font-size: 1.5rem;
     text-transform: uppercase;
 }
+
+.text-left {
+    text-align: left;
+}
+
+.inp-id {
+    width: 150px !important;
+}
+
+.inp-text {
+    max-width: 700px !important;
+}
+

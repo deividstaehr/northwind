@@ -8,7 +8,7 @@ class PDOFactory
 {
     private function __construct() {}
 
-    public static function make($mode)
+    public static function make()
     {
         $db = self::parseDatabaseIniFile($dbinfo = 'database');
    
@@ -35,10 +35,8 @@ class PDOFactory
         }
         
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-
-        if ($mode == 'obj') {
-            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-        }
+        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+        
         
         return $pdo;
     }

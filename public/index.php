@@ -3,8 +3,8 @@
 require_once __DIR__.'/../config/app.php';
 
 $slim->get('/', function() {
-    $homeTpl = new app\controllers\HomeController;
-    $homeTpl->index();
+    $controller = new app\controllers\HomeController;
+    $controller->index();
 });
 
 // Grupo para rotas relativas a funcionario
@@ -13,13 +13,29 @@ $slim->group('/employee', function() use ($slim) {
     // Listagem
     $slim->get('/', function() {
         $controller = new app\controllers\EmployeeController;
-        $controller->list();
+        $controller->employeeList();
     });
 
     // Cadastro
     $slim->get('/register', function() {
         $controller = new app\controllers\EmployeeController;
         $controller->makeFormRegister();
+    });
+    
+    // Alterar
+    $slim->get('/update/:id', function($id) {
+        $controller = new app\controllers\EmployeeController;
+//        $controller->makeFormUpdate();
+        dump($controller);
+    });
+});
+
+// Rotas para POST
+$slim->group('/employee', function() use ($slim) {
+    // Cadastro
+    $slim->post('/register', function() {
+        $controller = new app\controllers\EmployeeController;
+        $controller->register();
     });
 });
 

@@ -9,6 +9,11 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        parent::__construct(new HomeView);
+        $this->setView(new HomeView);
+    }
+    
+    public function index()
+    {
+        $this->view->render();
     }
 }

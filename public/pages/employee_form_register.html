@@ -1,35 +1,85 @@
 {% extends "base.html" %}
-
-{% block styles %}
-{{ parent() }}
-<style>
-    #content { 
-        text-align: center;
-   
-    }
-
-    #footer {
-        position: absolute;
-        bottom: 0;
-    }
-</style>
-{% endblock %}
-
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Listagem de Funcionários</li>
+    <li class="breadcrumb-item"><a href="{{ rootLink }}employee">Funcionários</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
 {% endblock %}
 
 
 {% block content %}
+    <div id="emplyee-option" class="container-fluid">
+        <h4 class="title">Cadastro de Funcionário</h4>
+        <hr>
+    </div>
 
-{% endblock %}
+    <div class="container">
+        <form method="post">
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label for="inpCort">Cortesia</label>
+                    <input type="text" class="form-control" id="inpCort" name="inpCort" required>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inpTit">Título</label>
+                    <input type="text" class="form-control" id="inpTit" name="inpTit" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inpName">Nome</label>
+                    <input type="text" class="form-control" id="inpName" name="inpName" required>
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="inpLastName">Sobrenome</label>
+                    <input type="text" class="form-control" id="inpLastName" name="inpLastName" required>
+                </div>
+            </div>
 
-{% block script %}
-{{ parent() }}
-    <script>
-        $(window).load(function() {
-            alert(1);
-        });
-    </script>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inpDtBorn">Data de Nascimento</label>
+                    <input type="date" class="form-control" id="inpDtBorn" name="inpDtBorn" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inpDtAdm">Data de Admissão</label>
+                    <input type="date" class="form-control" id="inpDtAdm" name="inpDtAdm" required>
+                </div>                    
+                <div class="form-group col-md-4">
+                    <label for="inpPhone">Telefone</label>
+                    <input type="text" class="form-control" id="inpPhone" name="inpPhone" required>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inpCidade">Cidade</label>
+                    <input type="text" class="form-control" id="inpCidade" name="inpCidade" required>
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="inpAddress">Endereço</label>
+                    <input type="text" class="form-control" id="inpAddress" name="inpAddress" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inpReg">Região</label>
+                    <input type="text" class="form-control" id="inpReg" name="inpReg" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inpCep">CEP</label>
+                    <input type="text" class="form-control" id="inpCep" name="inpCep" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inpCountry">País</label>
+                    <input type="text" class="form-control" id="inpCountry" name="inpCountry" required>
+                </div>
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>&nbsp;&nbsp;
+            <button type="reset" class="btn btn-success">Limpar Formulário</button>
+            <br><br>
+        </form>
+    </div>
+    
 {% endblock %}

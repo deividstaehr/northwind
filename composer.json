@@ -12,6 +12,7 @@
     "require": {
         "twig/twig": "^2.0",
         "slim/slim": "~2.0",
-        "symfony/var-dumper": "^4.0"
+        "symfony/var-dumper": "^4.0",
+        "twbs/bootstrap": "^4.1"
     }
 }

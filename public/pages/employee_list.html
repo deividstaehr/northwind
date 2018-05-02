@@ -3,7 +3,7 @@
 {% block styles %}
 {{ parent() }}
 <style>
-    #emplyee-option {
+    #employee-option {
         margin: 20px 0;
     }
 </style>
@@ -17,11 +17,11 @@
 
 {% block content %}
 
-    <div id="emplyee-option" class="container-fluid">
+    <div id="employee-option" class="container-fluid">
         <h4 class="title">Funcionários</h4>
         <hr>
-        <button class="btn btn-primary btn-delete">Excluir selecionados</button>
-        <button class="btn btn-default btn-insert">Cadastrar funcionário</button>
+        <button class="btn btn-danger btn-delete">Excluir selecionados</button>
+        <a class="btn btn-primary btn-insert"  href="{{ rootLink }}employee/register">Cadastrar funcionário</a>
     </div>
 
     <table class="table">

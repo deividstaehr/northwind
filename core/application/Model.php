@@ -35,7 +35,7 @@ abstract class Model
 
     public function store()
     {
-
+        
     }
 
     public function delete()
@@ -50,11 +50,18 @@ abstract class Model
 
     public function all($mode = 'obj', $columns = '*')
     {
-
-
         return $this->db
             ->select((is_array($columns) ? implode(', ', $columns) : $columns))
-            ->execute($mode, 'all');
+            ->execute('all');
+    }
+    
+    public function max()
+    {
+        $obj = $this->db
+            ->select("max({$this->getPkeyColumn()}) as max")
+            ->execute();
+            
+        return $obj->max;
     }
 
     public function getData()
