@@ -8,17 +8,19 @@ class DB
 {
     private static $conn;
     private $table;
+    private $pkey;
     private $query;
 
-    public function __construct($table) {
+    public function __construct($table, $pkey) {
         $this->table = $table;
+        $this->pkey = $pkey;
         $this->query = "";
         self::$conn = null;
     }
 
     public function begin()
     {
-	self::$conn = PDOFactory::make();
+	    self::$conn = PDOFactory::make();
         self::$conn->beginTransaction();
         
         return $this;
@@ -59,24 +61,16 @@ class DB
         return $exec;
     }
 
+    public function bind($value)
+    {
+        return "'{$value}'";
+    }
+
     public function rawQuery($query)
     {
         $this->query = $query;
-    }
 
-    public function insert()
-    {
-
-    }
-
-    public function delete()
-    {
-
-    }
-
-    public function update()
-    {
-
+        return $this;
     }
 
     public function select($columns = '*', $where = null)
@@ -84,6 +78,32 @@ class DB
         $sql = 'SELECT '.$columns.' FROM '.$this->getTable();
 
         $this->query = (is_null($where)) ? $sql : $sql.' WHERE '.$where;
+
+        return $this;
+    }
+
+    public function insert($id, $data)
+    {
+        $keys = implode(', ', array_keys($data));
+
+        $values = '';
+        foreach ($data as $value) {
+            $values .= ", {$this->bind($value)}";
+        }
+
+        $sql = "INSERT INTO {$this->getTable()} ({$this->getPkey()}, ";
+        $sql .= "{$keys}) VALUES ({$this->bind($id)}{$values})";
+
+        $this->query = $sql;
+
+        return $this;
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM {$this->getTable()}";
+
+        $this->query = "{$sql} WHERE {$this->getPkeyColumn()} = {$id}";
 
         return $this;
     }
@@ -96,6 +116,11 @@ class DB
     public function getTable()
     {
         return $this->table;
+    }
+
+    public function getPkey()
+    {
+        return $this->pkey;
     }
 
     public function getQuery()

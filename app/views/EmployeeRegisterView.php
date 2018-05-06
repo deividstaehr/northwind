@@ -14,8 +14,11 @@ class EmployeeRegisterView extends View
         parent::__construct();
     }
 
-    public function makeForm($nextId)
+    public function makeForm($nextId, $data)
     {
-        $this->add(['max' => $nextId]);
+        $this->add([
+            'max' => $nextId, 
+            'regioes' => $data
+        ]);
     }
 }

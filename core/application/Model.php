@@ -11,7 +11,10 @@ abstract class Model
 
     public function __construct($id = null)
     {
-        $this->db = new DB($this->getEntity());
+        $this->db = new DB(
+            $this->getEntity(),
+            $this->getPkeyColumn()
+        );
 
         if (!is_null($id)) {
             $this->load($id);
@@ -20,7 +23,10 @@ abstract class Model
 
     private function load($id)
     {
-
+        $obj = $this->db
+            ->select('*', "{$this->getPkeyColumn()} = {$id}")
+            ->execute();
+        dump($obj);
     }
 
     public function getEntity()
@@ -35,15 +41,18 @@ abstract class Model
 
     public function store()
     {
-        
+        if (isset($this->getData()[$this->getPkeyColumn()])) $this->delete();
+
+        $id = (isset($this->getData()[$this->getPkeyColumn()]))
+            ? $this->getData()[$this->getPkeyColumn()] // Update
+            : $this->max() + 1; // Insert
+
+        $this->db
+            ->insert($id, $this->getData())
+            ->execute();
     }
 
     public function delete()
-    {
-
-    }
-
-    public function find($id)
     {
 
     }
@@ -62,6 +71,13 @@ abstract class Model
             ->execute();
             
         return $obj->max;
+    }
+
+    public function fromArray($arr, $merge = null)
+    {
+        $this->columns = ($merge) 
+            ? array_merge($this->columns, $arr)
+            : $arr;
     }
 
     public function getData()

@@ -44,20 +44,20 @@
                 <tr>
                     <td>
                         <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="emplyee{{ employee.IDFuncionario }}">
-                        <label class="custom-control-label" for="emplyee{{ employee.IDFuncionario }}"></label>
+                        <input type="checkbox" class="custom-control-input" id="emplyee{{ employee.codigo }}">
+                        <label class="custom-control-label" for="emplyee{{ employee.codigo }}"></label>
                         </div>
                     </td>
-                    <td>{{ employee.Nome }}</td>
-                    <td>{{ employee.Sobrenome }}</td>
-                    <td>{{ employee.Titulo }}</td>
-                    <td>{{ employee.DataNac }}</td>
-                    <td>{{ employee.DataAdmissao }}</td>
-                    <td>{{ employee.Pais }}</td>
-                    <td>{{ employee.Cidade }}</td>
-                    <td>{{ employee.TelefoneResidencial }}</td>
+                    <td>{{ employee.nome }}</td>
+                    <td>{{ employee.sobrenome }}</td>
+                    <td>{{ employee.titulo }}</td>
+                    <td>{{ employee.dt_nascimento }}</td>
+                    <td>{{ employee.dt_admissao }}</td>
+                    <td>{{ employee.pais }}</td>
+                    <td>{{ employee.cidade }}</td>
+                    <td>{{ employee.fone }}</td>
                     <td class="min">
-                        <a href="{{ rootLink }}employee/update/{{ employee.IDFuncionario }}">
+                        <a href="{{ rootLink }}employee/update/{{ employee.codigo }}">
                             Alterar
                         </a>
                     </td>

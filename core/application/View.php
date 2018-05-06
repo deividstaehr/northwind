@@ -3,6 +3,7 @@
 namespace core\application;
 
 use core\utils\Path;
+use core\utils\Session;
 use core\utils\TemplateFactory;
 
 class View
@@ -27,6 +28,14 @@ class View
 
     public function render()
     {
+        Session::start();
+        if (!empty(Session::get('message'))) {
+            $this->add([
+                'message' => Session::get('message')
+            ]);
+            Session::unset('message');
+        }
+
         echo $this->template->render($this->dataReplace);
     }
 

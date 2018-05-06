@@ -1,2 +1,4 @@
 /nbproject/
 /vendor/
+/cache/
+/config/database.ini

@@ -24,8 +24,8 @@ $slim->group('/employee', function() use ($slim) {
     
     // Alterar
     $slim->get('/update/:id', function($id) {
-        $controller = new app\controllers\EmployeeController;
-//        $controller->makeFormUpdate();
+        $controller = new app\controllers\EmployeeController($id);
+        //$controller->makeFormUpdate();
         dump($controller);
     });
 });
@@ -36,7 +36,14 @@ $slim->group('/employee', function() use ($slim) {
     $slim->post('/register', function() {
         $controller = new app\controllers\EmployeeController;
         $controller->register();
+
+        exit();
     });
+});
+
+$slim->get('/territory_all', function(){
+    $json = Json::encode($result);
+    Json::response($json);
 });
 
 $slim->run();
