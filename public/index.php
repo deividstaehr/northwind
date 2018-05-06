@@ -42,8 +42,9 @@ $slim->group('/employee', function() use ($slim) {
 });
 
 $slim->get('/territory_all', function(){
-    $json = Json::encode($result);
-    Json::response($json);
+    $controller = new app\controllers\TerritoryController;
+    
+    echo $controller->getAllFromArray(core\utils\Get::return('codigo'));
 });
 
 $slim->run();

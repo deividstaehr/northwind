@@ -18,9 +18,14 @@ class DB
         self::$conn = null;
     }
 
-    public function begin()
+    public function begin($mode)
     {
-	    self::$conn = PDOFactory::make();
+        self::$conn = PDOFactory::make();
+        
+        if ($mode == 'array') {
+            self::$conn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_NUM);
+        }
+
         self::$conn->beginTransaction();
         
         return $this;
@@ -38,10 +43,10 @@ class DB
         self::$conn = null;
     }
 
-    public function execute($return = null)
+    public function execute($return = null, $mode = null)
     {
         try {
-            $this->begin();
+            $this->begin($mode);
 
             $stm = $this->getCurrentConnection()->prepare($this->getQuery());
             $exec = $stm->execute();
@@ -52,7 +57,7 @@ class DB
 
         $this->commit();
 
-        if (strtolower($return) == 'all') {
+        if ($return != null) {
             return $stm->fetchAll();
         } else {
             return $stm->fetch();

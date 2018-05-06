@@ -57,11 +57,11 @@ abstract class Model
 
     }
 
-    public function all($mode = 'obj', $columns = '*')
+    public function all($mode = 'obj', $columns = '*', $where = '1 = 1')
     {
         return $this->db
-            ->select((is_array($columns) ? implode(', ', $columns) : $columns))
-            ->execute('all');
+            ->select((is_array($columns) ? implode(', ', $columns) : $columns), $where)
+            ->execute('all', $mode);
     }
     
     public function max()
