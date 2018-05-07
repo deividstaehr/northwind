@@ -77,11 +77,33 @@ class EmployeeController extends Controller
     
     public function register()
     {
-        $this->model->fromArray(Post::all());
+        $post = Post::all();
+        $data = array();
+        
+        foreach($post as $key => $value) {
+            if ($key != 'codigo_regiao') {
+                $data[$key] = $value;
+            }
+        }
+        
+        $this->model->fromArray($data);
         $this->model->store();
 
         Session::newMessage('Funcionário cadastrado com sucesso!');
-
         Redirect::to('employee/register');
+    }
+    
+    public function delete()
+    {
+        $post = Post::all();
+        
+        $this->model->fromArray([
+            $this->model->getPkeyColumn() => $post['id']
+        ]);
+        
+        $this->model->delete();
+        
+        Session::newMessage('Funcionário deletado');
+        Redirect::to('employee');
     }
 }

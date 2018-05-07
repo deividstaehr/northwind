@@ -2,11 +2,7 @@
 
 {% block styles %}
 {{ parent() }}
-<style>
-    #employee-option {
-        margin: 20px 0;
-    }
-</style>
+<link rel="stylesheet" href="{{ cssPath }}datagrid.css" />
 {% endblock %}
 
 {% block breadcrumb %}
@@ -16,18 +12,26 @@
 {% endblock %}
 
 {% block content %}
+    {% if message %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endif %}
 
     <div id="employee-option" class="container-fluid">
         <h4 class="title">Funcionários</h4>
         <hr>
-        <button class="btn btn-danger btn-delete">Excluir selecionados</button>
         <a class="btn btn-primary btn-insert"  href="{{ rootLink }}employee/register">Cadastrar funcionário</a>
     </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th></th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Cargo</th>
@@ -42,12 +46,6 @@
         <tbody>
             {% for employee in employees %}
                 <tr>
-                    <td>
-                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" class="custom-control-input" id="emplyee{{ employee.codigo }}">
-                        <label class="custom-control-label" for="emplyee{{ employee.codigo }}"></label>
-                        </div>
-                    </td>
                     <td>{{ employee.nome }}</td>
                     <td>{{ employee.sobrenome }}</td>
                     <td>{{ employee.titulo }}</td>
@@ -57,9 +55,13 @@
                     <td>{{ employee.cidade }}</td>
                     <td>{{ employee.fone }}</td>
                     <td class="min">
-                        <a href="{{ rootLink }}employee/update/{{ employee.codigo }}">
+                        <a class="btn btn-primary" href="{{ rootLink }}employee/update/{{ employee.codigo }}">
                             Alterar
                         </a>
+                        <form action="{{ rootLink }}employee/delete" method="post">
+                            <input type="hidden" name="id" value="{{ employee.codigo }}">
+                            <button class="btn btn-danger" type="submit">Excluir</button>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}            

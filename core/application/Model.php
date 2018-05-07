@@ -46,15 +46,19 @@ abstract class Model
         $id = (isset($this->getData()[$this->getPkeyColumn()]))
             ? $this->getData()[$this->getPkeyColumn()] // Update
             : $this->max() + 1; // Insert
-
+        
         $this->db
             ->insert($id, $this->getData())
-            ->execute();
+            ->execute('no-return');
     }
 
     public function delete()
     {
-
+        $id = $this->getData()[$this->getPkeyColumn()];
+        
+        $this->db
+            ->delete($id)
+            ->execute('no-return');
     }
 
     public function all($mode = 'obj', $columns = '*', $where = '1 = 1')

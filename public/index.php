@@ -39,6 +39,14 @@ $slim->group('/employee', function() use ($slim) {
 
         exit();
     });
+    
+    // Delete
+    $slim->post('/delete', function() {
+        $controller = new app\controllers\EmployeeController;
+        $controller->delete();
+
+        exit();
+    });
 });
 
 $slim->get('/territory_all', function(){

@@ -33,14 +33,18 @@ class DB
 
     public function commit()
     {
-        self::$conn->commit();
-        self::$conn = null;
+        if (self::$conn != null) {
+            self::$conn->commit();
+            self::$conn = null;
+        }
     }
 
     public function rollback()
     {
-        //self::$conn->rollback();
-        self::$conn = null;
+        if (self::$conn != null) {
+            self::$conn->rollback();
+            self::$conn = null;
+        }
     }
 
     public function execute($return = null, $mode = null)
@@ -57,13 +61,13 @@ class DB
 
         $this->commit();
 
-        if ($return != null) {
+        if ($return != null && $return != 'no-return') {
             return $stm->fetchAll();
-        } else {
-            return $stm->fetch();
-        }
+        } else if (strtolower($return) == 'no-return') {
+            return $exec;
+        } 
         
-        return $exec;
+        return $stm->fetch();
     }
 
     public function bind($value)
@@ -100,7 +104,7 @@ class DB
         $sql .= "{$keys}) VALUES ({$this->bind($id)}{$values})";
 
         $this->query = $sql;
-
+        
         return $this;
     }
 
@@ -108,7 +112,7 @@ class DB
     {
         $sql = "DELETE FROM {$this->getTable()}";
 
-        $this->query = "{$sql} WHERE {$this->getPkeyColumn()} = {$id}";
+        $this->query = "{$sql} WHERE {$this->getPkey()} = {$this->bind($id)}";
 
         return $this;
     }

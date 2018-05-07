@@ -26,6 +26,8 @@ CREATE TABLE tb_funcionarios (
                 cep CHAR(8) NOT NULL,
                 fone VARCHAR(15) NOT NULL,
                 regiao VARCHAR(15) NOT NULL,
+				dt_nascimento DATE NOT NULL,
+				dt_admissao DATE NOT NULL,
                 PRIMARY KEY (codigo)
 );
 
