@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ cssPath }}datagrid.css" />
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ rootLink }}regions">Regiões</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar</li>
+{% endblock %}
+
+{% block content %}
+    {% if message %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endif %}
+
+    <div id="employee-option" class="container-fluid">
+        <h4 class="title">Regiões</h4>
+        <hr>
+        <a class="btn btn-primary btn-insert"  href="{{ rootLink }}region/register">Cadastrar região</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="region-desc">Descrição</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for region in regions %}
+                <tr>
+                    <td>{{ region.descricao }}</td>
+                    <td class="min">
+                        <a class="btn btn-primary" href="{{ rootLink }}region/update/{{ region.codigo }}">
+                            Alterar
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ rootLink }}region/delete" method="post">
+                            <input type="hidden" name="id" value="{{ region.codigo }}">
+                            <button class="btn btn-danger" type="submit">Excluir</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+
+{% endblock %}

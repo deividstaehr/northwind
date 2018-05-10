@@ -33,7 +33,7 @@ class View
             $this->add([
                 'message' => Session::get('message')
             ]);
-            Session::unset('message');
+            Session::remove('message');
         }
 
         echo $this->template->render($this->dataReplace);

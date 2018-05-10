@@ -85,24 +85,6 @@
                     <input type="text" class="form-control" id="inpCountry" name="pais" required>
                 </div>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inpRegiao">Região</label>
-                    <select id="inpRegiao" class="form-control" name="codigo_regiao">
-                        <option value="0">Nenhum</option>
-                        {% for regiao in regioes %}
-                            <option value="{{ regiao.codigo }}">{{ regiao.descricao }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inpTerritorio">Território</label>
-                    <select id="inpTerritorio" class="form-control" name="codigo_territorio" disabled>
-                        
-                    </select>
-                </div>
-            </div>
             
             <br>
             <hr>
@@ -112,9 +94,4 @@
         </form>
     </div>
     
-{% endblock %}
-
-{% block script %}
-{{ parent() }}
-    <script src="{{ jsPath }}employee_select.js"></script>
 {% endblock %}

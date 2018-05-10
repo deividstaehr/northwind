@@ -35,7 +35,7 @@ class Session
         session_regenerate_id();
     }
 
-    public static function unset($prop)
+    public static function remove($prop)
     {
         unset($_SESSION[$prop]);
     }

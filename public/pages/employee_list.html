@@ -32,6 +32,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Cortesia</th>
                 <th>Nome</th>
                 <th>Sobrenome</th>
                 <th>Cargo</th>
@@ -41,11 +42,13 @@
                 <th>Cidade</th>
                 <th>Telefone</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for employee in employees %}
                 <tr>
+                    <td>{{ employee.cortesia }}</td>
                     <td>{{ employee.nome }}</td>
                     <td>{{ employee.sobrenome }}</td>
                     <td>{{ employee.titulo }}</td>
@@ -58,10 +61,13 @@
                         <a class="btn btn-primary" href="{{ rootLink }}employee/update/{{ employee.codigo }}">
                             Alterar
                         </a>
+                    </td>
+                    <td>
                         <form action="{{ rootLink }}employee/delete" method="post">
                             <input type="hidden" name="id" value="{{ employee.codigo }}">
                             <button class="btn btn-danger" type="submit">Excluir</button>
                         </form>
+                        
                     </td>
                 </tr>
             {% endfor %}            

@@ -51,7 +51,7 @@ class DB
     {
         try {
             $this->begin($mode);
-
+            
             $stm = $this->getCurrentConnection()->prepare($this->getQuery());
             $exec = $stm->execute();
         } catch(\PDOException $e) {
@@ -103,6 +103,25 @@ class DB
         $sql = "INSERT INTO {$this->getTable()} ({$this->getPkey()}, ";
         $sql .= "{$keys}) VALUES ({$this->bind($id)}{$values})";
 
+        $this->query = $sql;
+        
+        return $this;
+    }
+    
+    public function update($data)
+    {      
+        $keys = array_keys($data);
+        $arr = array();
+        
+        foreach ($keys as $key) {
+            if ($key != $this->getPkey()) {
+                $arr[] = $key.' = '.$this->bind($data[$key]);
+            }
+        }
+        $set = (isset($arr[1])) ? implode(', ', $arr) : $arr[0];
+        
+        $sql = "UPDATE {$this->getTable()} SET {$set} WHERE {$this->getPkey()} = {$data[$this->getPkey()]}";
+        
         $this->query = $sql;
         
         return $this;

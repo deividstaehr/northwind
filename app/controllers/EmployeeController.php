@@ -4,12 +4,12 @@ namespace app\controllers;
 
 use core\application\Controller;
 use core\utils\Post;
-use core\utils\Get;
 use core\utils\Redirect;
 use core\utils\Session;
 
 use app\views\EmployeeDataGridView;
 use app\views\EmployeeRegisterView;
+use app\views\EmployeeUpdateView;
 use app\models\Employee;
 use app\controllers\RegionController;
 
@@ -18,6 +18,7 @@ class EmployeeController extends Controller
     public function __construct($id = null)
     {
         parent::__construct();
+        
         $this->setModel(new Employee($id));
     }
     
@@ -70,12 +71,12 @@ class EmployeeController extends Controller
     {
         $this->setView(new EmployeeUpdateView);
         
-        $this->view->makeForm();
+        $this->view->makeForm($this->model->getData());
   
         $this->view->render();
     }
     
-    public function register()
+    public function create()
     {
         $post = Post::all();
         $data = array();
@@ -91,6 +92,27 @@ class EmployeeController extends Controller
 
         Session::newMessage('Funcionário cadastrado com sucesso!');
         Redirect::to('employee/register');
+    }
+    
+    public function update()
+    {
+        $post = Post::all();
+        
+        $data = array(
+            $this->model->getPkeyColumn() => $this->model->getData()->codigo
+        );
+        
+        foreach($post as $key => $value) {
+            if ($key != 'codigo_regiao') {
+                $data[$key] = $value;
+            }
+        }
+        
+        $this->model->fromArray($data);
+        $this->model->update();
+
+        Session::newMessage('Funcionário alterado com sucesso!');
+        Redirect::to('employee');
     }
     
     public function delete()

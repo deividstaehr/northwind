@@ -26,7 +26,8 @@ abstract class Model
         $obj = $this->db
             ->select('*', "{$this->getPkeyColumn()} = {$id}")
             ->execute();
-        dump($obj);
+            
+        $this->fromArray($obj);
     }
 
     public function getEntity()
@@ -51,6 +52,13 @@ abstract class Model
             ->insert($id, $this->getData())
             ->execute('no-return');
     }
+    
+    public function update()
+    {        
+        $this->db
+            ->update($this->getData())
+            ->execute('no-return');
+    }
 
     public function delete()
     {
@@ -66,6 +74,13 @@ abstract class Model
         return $this->db
             ->select((is_array($columns) ? implode(', ', $columns) : $columns), $where)
             ->execute('all', $mode);
+    }
+    
+    public function rawQuery($query)
+    {
+        return $this->db
+            ->rawQuery($query)
+            ->execute('all');
     }
     
     public function max()

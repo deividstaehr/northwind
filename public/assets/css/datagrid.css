@@ -1,8 +1,7 @@
-    #employee-option {
-        margin: 20px 0;
-    }
+#employee-option {
+    margin: 20px 0;
+}
     
-    .min {
-        display: flex;
-        justify-content: space-around;
-    }
+.region-desc {
+    width: 80%;
+}

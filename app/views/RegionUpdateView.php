@@ -5,9 +5,9 @@ namespace app\views;
 use core\application\View;
 use core\utils\Path;
 
-class EmployeeUpdateView extends View
+class RegionUpdateView extends View
 {
-    protected $template_name = 'employee_form_update';
+    protected $template_name = 'region_form_update';
 
     public function __construct()
     {
@@ -16,6 +16,6 @@ class EmployeeUpdateView extends View
 
     public function makeForm($data)
     {
-        $this->add(['employees' => $data]);
+        $this->add(['regions' => $data]);
     }
 }

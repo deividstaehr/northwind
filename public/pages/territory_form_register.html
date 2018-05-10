@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ rootLink }}territory">Territórios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Cadastrar</li>
+{% endblock %}
+
+
+{% block content %}
+    {% if message %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endif %}
+    <div id="emplyee-option" class="container-fluid">
+        <h4 class="title">Cadastro de Território</h4>
+        <hr>
+    </div>
+
+    <div class="container">
+        <form method="post">
+            <div class="form-row">
+                <div class="form-group col-md-11">
+                    <label for="inpDesc">Descrição</label>
+                    <input type="text" class="form-control" id="inpDesc" name="descricao" required>
+                </div>
+            </div>
+            
+            <br>
+            <hr>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>&nbsp;&nbsp;
+            <button type="reset" class="btn btn-success">Limpar Formulário</button>
+            <br><br>
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ cssPath }}datagrid.css" />
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ rootLink }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{ rootLink }}territory">Territórios</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listar</li>
+{% endblock %}
+
+{% block content %}
+    {% if message %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% endif %}
+
+    <div id="employee-option" class="container-fluid">
+        <h4 class="title">Territórios</h4>
+        <hr>
+        <a class="btn btn-primary btn-insert"  href="{{ rootLink }}territory/register">Cadastrar território</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="region-desc">Descrição</th>
+                <th class="region-desc">Região</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for territory in territories %}
+                <tr>
+                    <td>{{ territory.descricao }}</td>
+                    <td>{{ territory.regiao }}</td>
+                    <td class="min">
+                        <a class="btn btn-primary" href="{{ rootLink }}territory/update/{{ territory.codigo }}">
+                            Alterar
+                        </a>
+                    </td>
+                    <td>
+                        <form action="{{ rootLink }}territory/delete" method="post">
+                            <input type="hidden" name="id" value="{{ territory.codigo }}">
+                            <button class="btn btn-danger" type="submit">Excluir</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            {% endfor %}            
+        </tbody>
+    </table>
+
+{% endblock %}
